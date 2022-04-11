@@ -1,2 +1,2 @@
 # orcas
-A hacking lab in a docker container
+A highly sterilized hacking lab consisting of docker containers
