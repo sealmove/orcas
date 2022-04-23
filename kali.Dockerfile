@@ -2,7 +2,21 @@ FROM kalilinux/kali-rolling
 
 ENV DEBIAN_FRONTEND=noninteractive
 
+WORKDIR /home
+
+# Make some custom paths
+RUN mkdir -p /usr/share/jars
+
+# Install some packages
 RUN apt-get update && apt-get -yq install \
     kali-linux-headless \
     gobuster \
-    evil-winrm
+    evil-winrm \
+    maven
+
+# Install rogue-jndi jar
+RUN git clone https://github.com/veracode-research/rogue-jndi.git && \
+    mvn -f rogue-jndi/pom.xml package && \
+    mv rogue-jndi/target/RogueJndi*.jar /usr/share/jars/RogueJndi.jar && \
+    rm -rf rogue-jndi
+
