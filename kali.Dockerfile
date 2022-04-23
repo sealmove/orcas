@@ -20,3 +20,6 @@ RUN git clone https://github.com/veracode-research/rogue-jndi.git && \
     mv rogue-jndi/target/RogueJndi*.jar /usr/share/jars/RogueJndi.jar && \
     rm -rf rogue-jndi
 
+# Decompress rockyou
+RUN 7z -o/usr/share/wordlists/ x /usr/share/wordlists/rockyou.txt.gz && \
+    rm /usr/share/wordlists/rockyou.txt.gz
