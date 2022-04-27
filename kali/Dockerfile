@@ -7,12 +7,16 @@ WORKDIR /home
 # Make some custom paths
 RUN mkdir -p /usr/share/jars
 
+# Install base packages
+RUN apt-get update && \
+    apt-get -yq install kali-linux-headless
+
 # Install some packages
-RUN apt-get update && apt-get -yq install \
-    kali-linux-headless \
+RUN apt-get -yq install \
     gobuster \
     evil-winrm \
-    maven
+    maven \
+    jadx
 
 # Install rogue-jndi jar
 RUN git clone https://github.com/veracode-research/rogue-jndi.git && \
