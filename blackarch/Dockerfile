@@ -21,7 +21,9 @@ RUN pacman -S --noconfirm \
 # Install essential tools
 RUN pacman -S --noconfirm \
     which \
-    p7zip
+    tree \
+    p7zip \
+    dnsutils
 
 # Install dev tools
 RUN pacman -S --noconfirm \
