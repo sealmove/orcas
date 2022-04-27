@@ -5,12 +5,18 @@ WORKDIR /root
 # Update index
 RUN pacman -Syu --noconfirm
 
+# Fetch wordlists
+RUN pacman -S --noconfirm seclists
+
 # Make some custom paths
 RUN mkdir -p /usr/share/jars
 
-# Install wordlists
-RUN pacman -S --noconfirm wordlistctl && \
-    wordlistctl fetch wordlists
+# GUI libraries
+RUN pacman -S --noconfirm \
+    xorg-xauth \
+    libxtst \
+    libxft \
+    ttf-dejavu
 
 # Install essential tools
 RUN pacman -S --noconfirm \
@@ -20,7 +26,7 @@ RUN pacman -S --noconfirm \
 # Install dev tools
 RUN pacman -S --noconfirm \
     git \
-    maven \
+    maven
 
 # Install packages
 RUN pacman -S --noconfirm \
