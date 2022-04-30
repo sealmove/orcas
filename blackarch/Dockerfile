@@ -64,4 +64,4 @@ RUN pip install pwntools
 RUN wget -P /usr/share/artifacts/scripts https://github.com/carlospolop/PEASS-ng/releases/download/20220424/linpeas.sh && \
     wget -P /usr/share/artifacts/linux https://github.com/carlospolop/PEASS-ng/releases/download/20220424/linpeas_linux_amd64
 
-RUN wget wget -P /usr/share/artifacts/linux https://github.com/DominicBreuker/pspy/releases/download/v1.2.0/pspy64
+RUN wget -P /usr/share/artifacts/linux https://github.com/DominicBreuker/pspy/releases/download/v1.2.0/pspy64
