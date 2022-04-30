@@ -6,40 +6,62 @@ WORKDIR /root
 RUN pacman -Syu --noconfirm
 
 # Fetch wordlists
-RUN pacman -S --noconfirm seclists
+RUN pacman -S --noconfirm --needed seclists
+
+# Dev
+RUN pacman -S --noconfirm --needed \
+    git \
+    maven \
+    python-pip
+
+# Install rogue-jndi jar
+RUN mkdir -p /usr/share/artifacts/jars && \
+    pacman -S --noconfirm --needed git maven && \
+    git clone https://github.com/veracode-research/rogue-jndi.git && \
+    mvn -f rogue-jndi/pom.xml package && \
+    mv rogue-jndi/target/RogueJndi*.jar /usr/share/artifacts/jars/RogueJndi.jar && \
+    rm -rf rogue-jndi
 
 # Make some custom paths
-RUN mkdir -p /usr/share/jars
+RUN mkdir -p /usr/share/artifacts/jars && \
+    mkdir -p /usr/share/artifacts/linux && \
+    mkdir -p /usr/share/artifacts/windows && \
+    mkdir -p /usr/share/artifacts/scripts
 
 # GUI libraries
-RUN pacman -S --noconfirm \
+RUN pacman -S --noconfirm --needed \
     xorg-xauth \
     libxtst \
     libxft \
     ttf-dejavu
 
-# Install essential tools
-RUN pacman -S --noconfirm \
+# Essential
+RUN pacman -S --noconfirm --needed \
     which \
     tree \
     p7zip \
-    dnsutils
+    dnsutils \
+    binutils \
+    netcat \
+    wget \
+    vim
 
-# Install dev tools
-RUN pacman -S --noconfirm \
-    git \
-    maven
-
-# Install packages
-RUN pacman -S --noconfirm \
+# Malicious
+RUN pacman -S --noconfirm --needed \
     gobuster \
     evil-winrm \
+    dnsmasq
+
+# Android
+RUN pacman -S --noconfirm --needed \
+    android-apktool \
     jadx
 
-# Install rogue-jndi jar
-RUN mkdir -p /usr/share/jars && \
-    pacman -S --noconfirm --needed git maven && \
-    git clone https://github.com/veracode-research/rogue-jndi.git && \
-    mvn -f rogue-jndi/pom.xml package && \
-    mv rogue-jndi/target/RogueJndi*.jar /usr/share/jars/RogueJndi.jar && \
-    rm -rf rogue-jndi
+# Python
+RUN pip install pwntools
+
+# LinPEAS
+RUN wget -P /usr/share/artifacts/scripts https://github.com/carlospolop/PEASS-ng/releases/download/20220424/linpeas.sh && \
+    wget -P /usr/share/artifacts/linux https://github.com/carlospolop/PEASS-ng/releases/download/20220424/linpeas_linux_amd64
+
+RUN wget wget -P /usr/share/artifacts/linux https://github.com/DominicBreuker/pspy/releases/download/v1.2.0/pspy64
