@@ -44,13 +44,16 @@ RUN pacman -S --noconfirm --needed \
     binutils \
     netcat \
     wget \
-    vim
+    vim \
+    fakeroot
 
 # Malicious
 RUN pacman -S --noconfirm --needed \
     gobuster \
+    wfuzz \
     evil-winrm \
-    dnsmasq
+    dnsmasq \
+    wpscan
 
 # Android
 RUN pacman -S --noconfirm --needed \
