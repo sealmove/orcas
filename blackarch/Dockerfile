@@ -51,6 +51,7 @@ RUN pacman -S --noconfirm --needed \
 RUN pacman -S --noconfirm --needed \
     gobuster \
     wfuzz \
+    nikto \
     evil-winrm \
     dnsmasq \
     wpscan
