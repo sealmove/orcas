@@ -43,6 +43,7 @@ RUN pacman -S --noconfirm --needed \
     dnsutils \
     binutils \
     netcat \
+    net-snmp \
     wget \
     vim \
     fakeroot
@@ -54,7 +55,9 @@ RUN pacman -S --noconfirm --needed \
     nikto \
     evil-winrm \
     dnsmasq \
-    wpscan
+    wpscan \
+    metasploit \
+    r2ghidra
 
 # Android
 RUN pacman -S --noconfirm --needed \
