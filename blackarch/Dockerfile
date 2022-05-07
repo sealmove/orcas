@@ -67,6 +67,9 @@ RUN pacman -S --noconfirm --needed \
 # Python
 RUN pip install pwntools
 
+# Volatility
+pip install https://github.com/volatilityfoundation/volatility3/releases/download/v2.0.1/volatility3-2.0.1-py3-none-any.whl
+
 # LinPEAS
 RUN wget -P /usr/share/artifacts/scripts https://github.com/carlospolop/PEASS-ng/releases/download/20220424/linpeas.sh && \
     wget -P /usr/share/artifacts/linux https://github.com/carlospolop/PEASS-ng/releases/download/20220424/linpeas_linux_amd64
