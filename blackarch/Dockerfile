@@ -46,7 +46,8 @@ RUN pacman -S --noconfirm --needed \
     net-snmp \
     wget \
     vim \
-    fakeroot
+    fakeroot \
+    openssh
 
 # Malicious
 RUN pacman -S --noconfirm --needed \
