@@ -58,7 +58,8 @@ RUN pacman -S --noconfirm --needed \
     dnsmasq \
     wpscan \
     metasploit \
-    r2ghidra
+    r2ghidra \
+    avaloniailspy
 
 # Android
 RUN pacman -S --noconfirm --needed \
